@@ -188,6 +188,7 @@ def image_filter():
             "filter_types": filter_types,
         }
         return render_template('image_filter.html', **context)
+ 
 
 
 ################################################################################
@@ -216,13 +217,19 @@ def gif_search():
         # TODO: Get the search query & number of GIFs requested by the user, store each as a 
         # variable
 
+        search_query = request.args.get('search_query')
+        num_gifs = request.args.get('quantity')
+
         response = requests.get(
             TENOR_URL,
             {
                 # TODO: Add in key-value pairs for:
                 # - 'q': the search query
+                "q": search_query,
                 # - 'key': the API key (defined above)
+                "key": API_KEY, 
                 # - 'limit': the number of GIFs requested
+                'limit': num_gifs
             })
 
         gifs = json.loads(response.content).get('results')
@@ -245,3 +252,4 @@ def gif_search():
 if __name__ == '__main__':
     app.config['ENV'] = 'development'
     app.run(debug=True)
+
