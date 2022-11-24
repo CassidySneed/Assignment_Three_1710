@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Compliments Results
+{% endblock %}
+
+{% block content %}
+
+<h1>Hey {{users_name}}! I hope you are doing well today!</h1>
+
+{% for item in results %}
+    <ul>
+        <li>{{item}}</li>
+    </ul>
+{% endfor %}
+
+
+
+{% endblock %}
